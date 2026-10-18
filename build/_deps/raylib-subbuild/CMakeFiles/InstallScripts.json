@@ -1,0 +1,7 @@
+{
+	"InstallScripts" : 
+	[
+		"C:/Turn Based RPG/build/_deps/raylib-subbuild/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

@@ -1,0 +1,14 @@
+# Target labels
+ raylib-populate
+# Source files and their labels
+C:/Turn Based RPG/build/_deps/raylib-subbuild/CMakeFiles/raylib-populate
+C:/Turn Based RPG/build/_deps/raylib-subbuild/CMakeFiles/raylib-populate.rule
+C:/Turn Based RPG/build/_deps/raylib-subbuild/CMakeFiles/raylib-populate-complete.rule
+C:/Turn Based RPG/build/_deps/raylib-subbuild/raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-build.rule
+C:/Turn Based RPG/build/_deps/raylib-subbuild/raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-configure.rule
+C:/Turn Based RPG/build/_deps/raylib-subbuild/raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-download.rule
+C:/Turn Based RPG/build/_deps/raylib-subbuild/raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-install.rule
+C:/Turn Based RPG/build/_deps/raylib-subbuild/raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-mkdir.rule
+C:/Turn Based RPG/build/_deps/raylib-subbuild/raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-patch.rule
+C:/Turn Based RPG/build/_deps/raylib-subbuild/raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-test.rule
+C:/Turn Based RPG/build/_deps/raylib-subbuild/raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-update.rule

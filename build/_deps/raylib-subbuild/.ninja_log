@@ -1,0 +1,37 @@
+# ninja log v7
+2	69	8140045758135050	raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-mkdir	6063bc0226e59475
+2	69	8140045758135050	C:/Turn Based RPG/build/_deps/raylib-subbuild/raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-mkdir	6063bc0226e59475
+69	29026	8140046047660099	raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-download	b7bd51519afaae12
+69	29026	8140046047660099	C:/Turn Based RPG/build/_deps/raylib-subbuild/raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-download	b7bd51519afaae12
+29026	29168	8140046047782790	raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-update	e55e1577f946addc
+29026	29168	8140046047782790	C:/Turn Based RPG/build/_deps/raylib-subbuild/raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-update	e55e1577f946addc
+29168	29256	8140046050008438	raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-patch	35d26ffb4bc2cc54
+29168	29256	8140046050008438	C:/Turn Based RPG/build/_deps/raylib-subbuild/raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-patch	35d26ffb4bc2cc54
+29257	29328	8140046050711947	raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-configure	cf56045db8cc90b1
+29257	29328	8140046050711947	C:/Turn Based RPG/build/_deps/raylib-subbuild/raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-configure	cf56045db8cc90b1
+29328	29414	8140046051582006	raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-build	9d74c6c84cece3e5
+29328	29414	8140046051582006	C:/Turn Based RPG/build/_deps/raylib-subbuild/raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-build	9d74c6c84cece3e5
+29414	29504	8140046052477668	raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-install	4dd5567fe8f798f8
+29414	29504	8140046052477668	C:/Turn Based RPG/build/_deps/raylib-subbuild/raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-install	4dd5567fe8f798f8
+29504	29573	8140046053172851	raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-test	7ad60a99bffb92db
+29504	29573	8140046053172851	C:/Turn Based RPG/build/_deps/raylib-subbuild/raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-test	7ad60a99bffb92db
+29573	29658	8140046054033885	CMakeFiles/raylib-populate-complete	90eb38c75825a9d4
+29573	29658	8140046054033885	raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-done	90eb38c75825a9d4
+29573	29658	8140046054033885	C:/Turn Based RPG/build/_deps/raylib-subbuild/CMakeFiles/raylib-populate-complete	90eb38c75825a9d4
+29573	29658	8140046054033885	C:/Turn Based RPG/build/_deps/raylib-subbuild/raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-done	90eb38c75825a9d4
+2	147	8140047051508391	raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-update	e55e1577f946addc
+2	147	8140047051508391	C:/Turn Based RPG/build/_deps/raylib-subbuild/raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-update	e55e1577f946addc
+148	212	8140047053547531	raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-patch	35d26ffb4bc2cc54
+148	212	8140047053547531	C:/Turn Based RPG/build/_deps/raylib-subbuild/raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-patch	35d26ffb4bc2cc54
+213	277	8140047054177930	raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-configure	cf56045db8cc90b1
+213	277	8140047054177930	C:/Turn Based RPG/build/_deps/raylib-subbuild/raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-configure	cf56045db8cc90b1
+277	338	8140047054793018	raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-build	9d74c6c84cece3e5
+277	338	8140047054793018	C:/Turn Based RPG/build/_deps/raylib-subbuild/raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-build	9d74c6c84cece3e5
+338	402	8140047055429306	raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-install	4dd5567fe8f798f8
+338	402	8140047055429306	C:/Turn Based RPG/build/_deps/raylib-subbuild/raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-install	4dd5567fe8f798f8
+402	472	8140047056129258	raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-test	7ad60a99bffb92db
+402	472	8140047056129258	C:/Turn Based RPG/build/_deps/raylib-subbuild/raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-test	7ad60a99bffb92db
+472	566	8140047057072013	CMakeFiles/raylib-populate-complete	90eb38c75825a9d4
+472	566	8140047057072013	raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-done	90eb38c75825a9d4
+472	566	8140047057072013	C:/Turn Based RPG/build/_deps/raylib-subbuild/CMakeFiles/raylib-populate-complete	90eb38c75825a9d4
+472	566	8140047057072013	C:/Turn Based RPG/build/_deps/raylib-subbuild/raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-done	90eb38c75825a9d4

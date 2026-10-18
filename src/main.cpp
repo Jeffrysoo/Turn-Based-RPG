@@ -27,23 +27,39 @@ We are not going to add or remove fighters during the battle, so an array is fin
 
 */
 
+#include "raylib.h"
 #include "Battle.h"
-#include "Fighter.h"
+#include "GameUI.h"
 #include <cstdlib>   // srand()
 #include <ctime>     // time()
- 
+
 int main() {
     srand(time(0));
- 
+
     Battle battle;
     //                        name      HP  MP  ATK DEF SPD  hero
     battle.addFighter(Fighter("Knight", 120,  0, 18, 10,  8, true));
     battle.addFighter(Fighter("Mage",    80, 30, 22,  6, 12, true));
     battle.addFighter(Fighter("Slime",   60,  0, 12,  4,  6, false));
     battle.addFighter(Fighter("Goblin",  70,  0, 15,  6, 10, false));
-    battle.addFighter(Fighter("Imp",     50, 10, 13,  3, 11, false));   // casts Fireball
- 
-    battle.run();
+    battle.addFighter(Fighter("Imp",     50, 10, 13,  3, 11, false));
+    battle.start();
+
+    InitWindow(SCREEN_W, SCREEN_H, "Turn-Based RPG");
+    SetTargetFPS(60);
+    ChangeDirectory(GetApplicationDirectory());   // find "assets/" next to the .exe
+
+    GameUI ui;
+    ui.load(battle);
+
+    while (!WindowShouldClose()) {
+        ui.update(battle, GetFrameTime());
+        BeginDrawing();
+        ui.draw(battle);
+        EndDrawing();
+    }
+
+    ui.unload(battle);
+    CloseWindow();
     return 0;
 }
- 

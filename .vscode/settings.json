@@ -1,8 +1,9 @@
 {
     "code-runner.executorMap": {
-        "cpp": "cd \"$workspaceRoot\" && g++ -g src/*.cpp -o rpg.exe && .\\rpg.exe"
+        "cpp": "cd \"$workspaceRoot\" && cmake --build build && .\\build\\rpg.exe"
     },
     "code-runner.runInTerminal": false,
     "code-runner.saveAllFilesBeforeRun": true,
-    "code-runner.clearPreviousOutput": true
+    "code-runner.clearPreviousOutput": true,
+    "C_Cpp.default.compileCommands": "${workspaceFolder}/build/compile_commands.json"
 }
