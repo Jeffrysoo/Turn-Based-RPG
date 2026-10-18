@@ -1,0 +1,8 @@
+{
+    "code-runner.executorMap": {
+        "cpp": "cd \"$workspaceRoot\" && g++ -g src/*.cpp -o rpg.exe && .\\rpg.exe"
+    },
+    "code-runner.runInTerminal": false,
+    "code-runner.saveAllFilesBeforeRun": true,
+    "code-runner.clearPreviousOutput": true
+}
