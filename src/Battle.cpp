@@ -64,9 +64,22 @@ void Battle::printAllStats() const {
     }
 }
  
+// The living hero with the lowest HP (-1 if none)
+int Battle::findWeakestHero() const {
+    int weakest = -1;
+    for (int i = 0; i < count; i++) {
+        if (fighters[i].isHero() && fighters[i].isAlive()) {
+            if (weakest == -1 || fighters[i].getHp() < fighters[weakest].getHp()) {
+                weakest = i;
+            }
+        }
+    }
+    return weakest;
+}
+ 
 // ----------------------------------------------------------- turns ---
 void Battle::takeTurn(int index) {
-    fighters[index].setDefending(false);   // Defend only lasts until your next turn
+    fighters[index].setDefending(false);
  
     if (fighters[index].isHero()) {
         playerTurn(index);
@@ -76,34 +89,84 @@ void Battle::takeTurn(int index) {
 }
  
 void Battle::playerTurn(int index) {
+    Fighter &hero = fighters[index];
+ 
     cout << endl;
     printAllStats();
-    cout << "\n" << fighters[index].getName() << "'s turn. Choose an action:" << endl;
-    cout << "  1. Attack" << endl;
-    cout << "  2. Defend" << endl;
  
-    int choice = readChoice(1, 2);
+    // Loop until the player picks an action they can actually do.
+    // Choosing a spell without enough MP shows the menu again.
+    bool done = false;
+    while (!done) {
+        cout << "\n" << hero.getName() << "'s turn (MP " << hero.getMp() << "). Choose an action:" << endl;
+        cout << "  1. Attack" << endl;
+        cout << "  2. Defend" << endl;
+        cout << "  3. Fireball (" << FIREBALL_COST << " MP)" << endl;
+        cout << "  4. Heal     (" << HEAL_COST << " MP)" << endl;
  
-    switch (choice) {
-        case ACTION_ATTACK: {
-            int target = chooseTarget(false);   // heroes attack enemies
-            performAttack(index, target);
-            break;
+        int choice = readChoice(1, 4);
+ 
+        switch (choice) {
+            case ACTION_ATTACK:
+                performAttack(index, chooseTarget(false));
+                done = true;
+                break;
+ 
+            case ACTION_DEFEND:
+                performDefend(index);
+                done = true;
+                break;
+ 
+            case ACTION_FIREBALL:
+                if (hero.getMp() < FIREBALL_COST) {
+                    cout << "Not enough MP!" << endl;
+                } else {
+                    performFireball(index, chooseTarget(false));
+                    done = true;
+                }
+                break;
+ 
+            case ACTION_HEAL:
+                if (hero.getMp() < HEAL_COST) {
+                    cout << "Not enough MP!" << endl;
+                } else {
+                    performHeal(index, chooseTarget(true));   // heal targets allies
+                    done = true;
+                }
+                break;
         }
-        case ACTION_DEFEND:
-            fighters[index].setDefending(true);
-            cout << fighters[index].getName() << " braces for impact." << endl;
-            break;
     }
 }
  
+// Smarter AI: decisions based on the situation, with some randomness
+// so the player can't predict it perfectly.
 void Battle::enemyTurn(int index) {
-    int options[MAX_FIGHTERS];
-    int numOptions = listTargets(true, options);   // enemies attack heroes
-    if (numOptions == 0) return;
+    Fighter &enemy = fighters[index];
  
-    int target = options[randInt(0, numOptions - 1)];
-    performAttack(index, target);
+    // 1. Badly hurt? Sometimes defend instead of attacking.
+    bool lowHp = enemy.getHp() < enemy.getMaxHp() / 3;
+    if (lowHp && randInt(1, 100) <= 40) {
+        performDefend(index);
+        return;
+    }
+ 
+    // 2. Usually go for the weakest hero, to try to knock one out.
+    //    Otherwise pick a random hero.
+    int target;
+    if (randInt(1, 100) <= 60) {
+        target = findWeakestHero();
+    } else {
+        int options[MAX_FIGHTERS];
+        int numOptions = listTargets(true, options);
+        target = options[randInt(0, numOptions - 1)];
+    }
+ 
+    // 3. Enemies with MP use Fireball when they can afford it.
+    if (enemy.getMp() >= FIREBALL_COST && randInt(1, 100) <= 50) {
+        performFireball(index, target);
+    } else {
+        performAttack(index, target);
+    }
 }
  
 int Battle::chooseTarget(bool heroSide) const {
@@ -114,13 +177,14 @@ int Battle::chooseTarget(bool heroSide) const {
     for (int i = 0; i < numOptions; i++) {
         const Fighter &f = fighters[options[i]];
         cout << "  " << (i + 1) << ". " << f.getName()
-             << " (HP " << f.getHp() << ")" << endl;
+             << " (HP " << f.getHp() << "/" << f.getMaxHp() << ")" << endl;
     }
  
     int choice = readChoice(1, numOptions);
-    return options[choice - 1];   // menu starts at 1, arrays start at 0
+    return options[choice - 1];
 }
  
+// --------------------------------------------------------- actions ---
 void Battle::performAttack(int attackerIndex, int targetIndex) {
     Fighter &attacker = fighters[attackerIndex];
     Fighter &target   = fighters[targetIndex];
@@ -136,8 +200,50 @@ void Battle::performAttack(int attackerIndex, int targetIndex) {
          << " for " << dmg << " damage"
          << (target.isDefending() ? " (defended)." : ".") << endl;
  
-    if (!target.isAlive()) {
-        cout << target.getName() << " is defeated!" << endl;
+    handleDefeat(targetIndex);
+}
+ 
+void Battle::performFireball(int casterIndex, int targetIndex) {
+    Fighter &caster = fighters[casterIndex];
+    Fighter &target = fighters[targetIndex];
+ 
+    caster.spendMp(FIREBALL_COST);
+ 
+    int dmg = caster.calcSpellDamage();
+    if (target.isDefending()) {
+        dmg = dmg / 2;
+        if (dmg < 1) dmg = 1;
+    }
+    target.takeDamage(dmg);
+ 
+    cout << caster.getName() << " casts Fireball on " << target.getName()
+         << " for " << dmg << " damage"
+         << (target.isDefending() ? " (defended)." : ".") << endl;
+ 
+    handleDefeat(targetIndex);
+}
+ 
+void Battle::performHeal(int casterIndex, int targetIndex) {
+    Fighter &caster = fighters[casterIndex];
+    Fighter &target = fighters[targetIndex];
+ 
+    caster.spendMp(HEAL_COST);
+    int healed = target.heal(HEAL_AMOUNT);
+ 
+    cout << caster.getName() << " heals " << target.getName()
+         << " for " << healed << " HP." << endl;
+}
+ 
+void Battle::performDefend(int index) {
+    fighters[index].setDefending(true);
+    cout << fighters[index].getName() << " braces for impact." << endl;
+}
+ 
+// If the target just died, announce it and remove it from the turn order.
+// Shared by every action that deals damage.
+void Battle::handleDefeat(int targetIndex) {
+    if (!fighters[targetIndex].isAlive()) {
+        cout << fighters[targetIndex].getName() << " is defeated!" << endl;
         turns.remove(targetIndex);
     }
 }

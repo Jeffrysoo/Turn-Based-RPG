@@ -31,17 +31,19 @@ We are not going to add or remove fighters during the battle, so an array is fin
 #include "Fighter.h"
 #include <cstdlib>   // srand()
 #include <ctime>     // time()
-
+ 
 int main() {
     srand(time(0));
-
+ 
     Battle battle;
-    //                        name     HP  ATK DEF SPD  hero
-    battle.addFighter(Fighter("Knight", 120, 18, 10,  8, true));
-    battle.addFighter(Fighter("Mage",    80, 22,  6, 12, true));
-    battle.addFighter(Fighter("Slime",   60, 12,  4,  6, false));
-    battle.addFighter(Fighter("Goblin",  70, 15,  6, 10, false));
-
+    //                        name      HP  MP  ATK DEF SPD  hero
+    battle.addFighter(Fighter("Knight", 120,  0, 18, 10,  8, true));
+    battle.addFighter(Fighter("Mage",    80, 30, 22,  6, 12, true));
+    battle.addFighter(Fighter("Slime",   60,  0, 12,  4,  6, false));
+    battle.addFighter(Fighter("Goblin",  70,  0, 15,  6, 10, false));
+    battle.addFighter(Fighter("Imp",     50, 10, 13,  3, 11, false));   // casts Fireball
+ 
     battle.run();
     return 0;
 }
+ 
